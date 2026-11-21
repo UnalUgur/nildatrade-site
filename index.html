@@ -28,6 +28,10 @@ img{max-width:100%}
 .navlink:hover{text-decoration:underline !important;text-underline-offset:6px}
 a[style*="background: #00409D"]:hover{background:#002E73 !important}
 button[style*="background: #00409D"]:hover{background:#002E73 !important}
+.nf input,.nf textarea{font:inherit;font-size:16px;color:#0A3478;border:1px solid #B9C3D3;background:#fff;padding:12px 14px;width:100%;box-sizing:border-box;border-radius:0}
+.nf input:focus,.nf textarea:focus{outline:2px solid #00409D;outline-offset:0;border-color:#00409D}
+.nf label{display:flex;flex-direction:column;gap:6px;font-size:14px;font-weight:600;color:#0A3478}
+.nf button:disabled{opacity:.6;cursor:wait}
 @media (max-width:760px){.navlink{display:none}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "NildaTrade", "url": "https://nildatrade.com/", "logo": "https://nildatrade.com/assets/logo-512.png", "email": "info@nildatrade.com", "telephone": "+905364715016", "address": {"@type": "PostalAddress", "streetAddress": "Dudullu OSB, B-207 Sok. No: 19", "postalCode": "34775", "addressLocality": "Ümraniye, Istanbul", "addressCountry": "TR"}}</script>
@@ -189,10 +193,26 @@ button[style*="background: #00409D"]:hover{background:#002E73 !important}
 <div style="display: flex; flex-direction: column; gap: 24px">
 <div style="font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase; color: #00409D">Contact</div>
 <h2 style="margin: 0; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: balance">Send your inquiry</h2>
-<p style="margin: 0; font-size: 18px; color: #3F5478; max-width: 480px; text-wrap: pretty">Write to us with three things: the product, the quantity and the destination country. NildaTrade is built on 15+ years of B2B industrial sales and export experience.</p>
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px">
-<button type="button" id="copy-email" style="background: #00409D; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 18px; padding: 16px 28px; display: inline-flex; align-items: center; gap: 12px; border: 0; cursor: pointer; font-family: inherit">Copy email address</button><a href="mailto:info@nildatrade.com?subject=Inquiry" style="font-weight: 600; font-size: 17px">Open in email app</a>
+<p style="margin: 0; font-size: 18px; color: #3F5478; max-width: 480px; text-wrap: pretty">Tell us the product, the quantity and the destination country. NildaTrade is built on 15+ years of B2B industrial sales and export experience.</p>
+<form class="nf" id="inquiry-form" action="https://api.web3forms.com/submit" method="POST" style="display: flex; flex-direction: column; gap: 16px; max-width: 520px">
+<input type="hidden" name="access_key" value="d898e9c5-42ec-462c-a5c8-2e23ad69dd87">
+<input type="hidden" name="subject" value="New inquiry from nildatrade.com">
+<input type="hidden" name="from_name" value="NildaTrade website">
+<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display: none">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 16px">
+<label>Your name *<input type="text" name="name" required autocomplete="name"></label>
+<label>Company<input type="text" name="company" autocomplete="organization"></label>
+<label>Email *<input type="email" name="email" required autocomplete="email"></label>
+<label>Country *<input type="text" name="country" required autocomplete="country-name"></label>
 </div>
+<label>Product, quantity and details *<textarea name="message" rows="5" required placeholder="Example: 2,000 units of hair wax, 150 ml, shipping to Tema, Ghana"></textarea></label>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px">
+<button type="submit" style="background: #00409D; color: #FFFFFF; border: 0; cursor: pointer; font-family: inherit; font-weight: 600; font-size: 18px; padding: 16px 28px; display: inline-flex; align-items: center; gap: 12px">Send inquiry<svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M3 10h13M11 5l5 5-5 5"></path></svg></button>
+<span style="font-size: 15px; color: #3F5478">We reply within one business day.</span>
+</div>
+<p id="form-status" role="status" aria-live="polite" style="margin: 0; font-size: 16px; font-weight: 600"></p>
+</form>
+
 </div>
 <div style="display: flex; flex-direction: column; border-top: 2px solid #0A3478">
 <div style="display: flex; flex-wrap: wrap; gap: 4px 24px; padding: 20px 0; border-bottom: 1px solid #DDE2EA">
@@ -220,10 +240,12 @@ button[style*="background: #00409D"]:hover{background:#002E73 !important}
 
 </div>
 <script>
-(function(){var b=document.getElementById('copy-email');if(!b)return;var label=b.textContent,addr='info@nildatrade.com';
-function done(){b.textContent='Copied: '+addr;setTimeout(function(){b.textContent=label},2500)}
-function fallback(){var i=document.createElement('input');i.value=addr;document.body.appendChild(i);i.select();try{document.execCommand('copy');done()}catch(e){b.textContent=addr}document.body.removeChild(i)}
-b.addEventListener('click',function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(addr).then(done,fallback)}else{fallback()}})})();
+(function(){var f=document.getElementById('inquiry-form');if(!f)return;var s=document.getElementById('form-status'),b=f.querySelector('button[type=submit]'),label=b.innerHTML;
+f.addEventListener('submit',function(e){e.preventDefault();b.disabled=true;b.textContent='Sending...';s.textContent='';
+fetch(f.action,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(f)}).then(function(r){return r.json().then(function(j){return {ok:r.ok&&j.success,j:j}})})
+.then(function(x){if(x.ok){f.reset();s.style.color='#0B6B3A';s.textContent='Thank you. Your inquiry was sent and we will reply by email.'}else{throw new Error((x.j&&x.j.message)||'error')}})
+.catch(function(){s.style.color='#A4161A';s.textContent='The form could not be sent. Please email info@nildatrade.com directly.'})
+.finally(function(){b.disabled=false;b.innerHTML=label})})})();
 </script>
 </body>
 </html>
