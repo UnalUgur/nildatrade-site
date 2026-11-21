@@ -27,6 +27,7 @@ img{max-width:100%}
 .page{overflow-x:clip}
 .navlink:hover{text-decoration:underline !important;text-underline-offset:6px}
 a[style*="background: #00409D"]:hover{background:#002E73 !important}
+button[style*="background: #00409D"]:hover{background:#002E73 !important}
 @media (max-width:760px){.navlink{display:none}}
 </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "NildaTrade", "url": "https://nildatrade.com/", "logo": "https://nildatrade.com/assets/logo-512.png", "email": "info@nildatrade.com", "telephone": "+905364715016", "address": {"@type": "PostalAddress", "streetAddress": "Dudullu OSB, B-207 Sok. No: 19", "postalCode": "34775", "addressLocality": "Ümraniye, Istanbul", "addressCountry": "TR"}}</script>
@@ -56,7 +57,7 @@ a[style*="background: #00409D"]:hover{background:#002E73 !important}
 <h1 style="margin: 0; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-size: clamp(38px, 4.6vw, 64px); line-height: 1.04; letter-spacing: -0.02em; text-wrap: balance">Tell us the product. We find the factory in Türkiye.</h1>
 <p style="margin: 0; font-size: 20px; line-height: 1.5; color: #3F5478; max-width: 540px; text-wrap: pretty">NildaTrade is your buying office in Istanbul. We find the right manufacturer, compare offers, check the goods and ship them to your port.</p>
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px">
-<a href="mailto:info@nildatrade.com?subject=Inquiry" style="background: #00409D; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 18px; padding: 16px 28px; display: inline-flex; align-items: center; gap: 12px">Send an inquiry<svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M3 10h13M11 5l5 5-5 5"></path></svg></a>
+<a href="#contact" style="background: #00409D; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 18px; padding: 16px 28px; display: inline-flex; align-items: center; gap: 12px">Send an inquiry<svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M3 10h13M11 5l5 5-5 5"></path></svg></a>
 <span style="font-size: 17px; font-weight: 500; color: #0A3478">info@nildatrade.com</span>
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 12px 32px; padding-top: 22px; border-top: 1px solid #DDE2EA; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-size: 16px; font-weight: 700; color: #0A3478">
@@ -179,7 +180,7 @@ a[style*="background: #00409D"]:hover{background:#002E73 !important}
 <h2 style="margin: 0; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; letter-spacing: -0.01em">Are you a manufacturer in Türkiye?</h2>
 <p style="margin: 0; font-size: 18px; color: #3F5478; text-wrap: pretty">We also work in the other direction: market research, distributor search and export development for Turkish producers.</p>
 </div>
-<a href="mailto:info@nildatrade.com?subject=Inquiry" style="border: 2px solid #00409D; color: #00409D; text-decoration: none; font-weight: 600; font-size: 17px; padding: 14px 26px; display: inline-block">Talk to us</a>
+<a href="#contact" style="border: 2px solid #00409D; color: #00409D; text-decoration: none; font-weight: 600; font-size: 17px; padding: 14px 26px; display: inline-block">Talk to us</a>
 </div>
 </section>
 
@@ -190,7 +191,7 @@ a[style*="background: #00409D"]:hover{background:#002E73 !important}
 <h2 style="margin: 0; font-family: Archivo, 'Helvetica Neue', Arial, sans-serif; font-weight: 800; font-size: clamp(30px, 3.2vw, 44px); line-height: 1.1; letter-spacing: -0.015em; text-wrap: balance">Send your inquiry</h2>
 <p style="margin: 0; font-size: 18px; color: #3F5478; max-width: 480px; text-wrap: pretty">Write to us with three things: the product, the quantity and the destination country. NildaTrade is built on 15+ years of B2B industrial sales and export experience.</p>
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px">
-<a href="mailto:info@nildatrade.com?subject=Inquiry" style="background: #00409D; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 18px; padding: 16px 28px; display: inline-flex; align-items: center; gap: 12px">Email us<svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><path d="M3 10h13M11 5l5 5-5 5"></path></svg></a>
+<button type="button" id="copy-email" style="background: #00409D; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 18px; padding: 16px 28px; display: inline-flex; align-items: center; gap: 12px; border: 0; cursor: pointer; font-family: inherit">Copy email address</button><a href="mailto:info@nildatrade.com?subject=Inquiry" style="font-weight: 600; font-size: 17px">Open in email app</a>
 </div>
 </div>
 <div style="display: flex; flex-direction: column; border-top: 2px solid #0A3478">
@@ -218,5 +219,11 @@ a[style*="background: #00409D"]:hover{background:#002E73 !important}
 </footer>
 
 </div>
+<script>
+(function(){var b=document.getElementById('copy-email');if(!b)return;var label=b.textContent,addr='info@nildatrade.com';
+function done(){b.textContent='Copied: '+addr;setTimeout(function(){b.textContent=label},2500)}
+function fallback(){var i=document.createElement('input');i.value=addr;document.body.appendChild(i);i.select();try{document.execCommand('copy');done()}catch(e){b.textContent=addr}document.body.removeChild(i)}
+b.addEventListener('click',function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(addr).then(done,fallback)}else{fallback()}})})();
+</script>
 </body>
 </html>
