@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://nildatrade.com/sitemap.xml
